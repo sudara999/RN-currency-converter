@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "Currency Converter",
+    "slug": "Project1",
+    "privacy": "public",
+    "sdkVersion": "35.0.0",
+    "platforms": [
+      "android"
+    ],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "android": {
+      "package": "com.sudara.currencyconverter"
+    },
+    "description": "Currency Converter converts value of money from currency to another"
+  }
+}
