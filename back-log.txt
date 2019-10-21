@@ -1,4 +1,0 @@
-*Add more currencies
-*Make the font bigger
-*Bring the switch button down
-*Put commas in large numbers 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import NumberFormat from 'react-number-format';
 
 export default class AppScreen extends Component {
 
@@ -27,7 +28,7 @@ export default class AppScreen extends Component {
     //to -> from
     this.setState(state => {
       return{
-        from: state.to, to: state.from, amount: '', rate: 0
+        from: state.to, to: state.from, rate: 0
       }
     },
     //the new exchange rate for the pair is requesed from the api
@@ -50,34 +51,35 @@ export default class AppScreen extends Component {
       <View style={styles.masterContainer}>
         {/*Area to enter from-currency*/}
         <View style={styles.textArea}> 
-          <Text>Enter Amount in {this.state.from}</Text>
-          <View style={styles.inputBar}>
-            {/*TextInput to enter from-currency*/}
-            <TextInput
-              style={styles.inputBox} 
-              onChangeText={(text)=>this.setState({amount: text})}
-              keyboardType={"numeric"}
-              placeholder="0"
-              value={String(this.state.amount)}
-              on
-            />
-            {/*Button to reverse the exchange*/}
-            <Button
-              style={styles.button}
-              title="Switch"
-              onPress={()=>this.switchCurrency()}
-              raised
-            />
-          </View>
+          <Text style={styles.txtGuides}>Enter Amount in <Text style={styles.txtInfo}>{this.state.from}</Text></Text>
+          {/*TextInput to enter from-currency*/}
+          <TextInput
+            style={styles.inputBox} 
+            onChangeText={(text)=>this.setState({amount: text})}
+            keyboardType={"numeric"}
+            placeholder="0"
+            value={String(this.state.amount)}
+          />
         </View>
+        {/*Button to reverse the exchange*/}
+        <Button
+          style={styles.button}
+          title="Reverse Exchange"
+          onPress={()=>this.switchCurrency()}
+          raised
+        />
         {/*Area to display to-currency*/}
         <View style={styles.textArea}>
-          <Text>
-            Amount in {this.state.to}    
+          <Text style={styles.txtGuides}>
+            Amount in <Text style={styles.txtInfo}>{this.state.to}</Text>    
           </Text>
-          <Text>
-            {(this.state.amount * this.state.rate).toFixed(2)}
-          </Text>
+          <NumberFormat
+            value={this.state.amount * this.state.rate}
+            decimalScale={2}
+            displayType={'text'}
+            thousandSeparator={true}
+            renderText={value => <Text style={styles.txtInfo}>{value}</Text>} 
+          />
         </View>
       </View>
     );
@@ -101,12 +103,19 @@ let styles = StyleSheet.create({
     alignItems: "center",
     margin: 5,
     borderRadius: 5,
+    fontSize: 20
   },
-  inputBar: {
-    flexDirection: "row",
-    alignItems: "center"
-  },
+  // inputBar: {
+  //   flexDirection: "row",
+  //   alignItems: "center"
+  // },
   button: {
     borderRadius: 5
+  },
+  txtGuides: {
+    fontSize: 15
+  },
+  txtInfo: {
+    fontSize: 20
   }
 })
