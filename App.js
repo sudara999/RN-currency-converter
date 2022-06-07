@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableHighlight, Image } from 'react-native';
 import NumberFormat from 'react-number-format';
 
 export default class AppScreen extends Component {
@@ -62,17 +62,17 @@ export default class AppScreen extends Component {
           />
         </View>
         {/*Button to reverse the exchange*/}
-        <Button
-          style={styles.button}
-          title="Reverse Exchange"
-          onPress={()=>this.switchCurrency()}
-          raised
-        />
+        <TouchableHighlight style={styles.button} onPress={()=>this.switchCurrency()}>
+          <Image
+            source={require("./assets/reverse-exchange-icon.png")}
+          />
+        </TouchableHighlight>
         {/*Area to display to-currency*/}
         <View style={styles.textArea}>
           <Text style={styles.txtGuides}>
             Amount in <Text style={styles.txtInfo}>{this.state.to}</Text>    
           </Text>
+          {/*Text in numerical format*/}
           <NumberFormat
             value={this.state.amount * this.state.rate}
             decimalScale={2}
